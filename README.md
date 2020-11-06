@@ -1,6 +1,9 @@
 ## Description
 A React app with a form that when the user provides his flight number and last name, an API request returns a new form, to be filled with the user's basic information, with a confirmation message afterwards.
 
+## Demo
+https://gabrielnvg-flight-checkin.surge.sh
+
 ## Dependencies
 - [Node](https://nodejs.org/en/) 12.15.0
 - [npm](https://www.npmjs.com/get-npm) 6.13.4
