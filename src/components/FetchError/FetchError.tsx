@@ -3,7 +3,7 @@ import styles from './FetchError.module.scss';
 
 import ReloadPageButton from '../ReloadPageButton/ReloadPageButton';
 
-function FetchError() {
+const FetchError = () => {
   return (
     <div className={styles['fetch-error']}>
       <div>Please check your connection and try again later.</div>
@@ -11,6 +11,6 @@ function FetchError() {
       <ReloadPageButton />
     </div>
   );
-}
+};
 
 export default FetchError;
