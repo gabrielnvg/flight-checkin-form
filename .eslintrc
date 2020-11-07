@@ -30,6 +30,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "react/prop-types": 0,
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "linebreak-style": "off",
     "prettier/prettier": [
