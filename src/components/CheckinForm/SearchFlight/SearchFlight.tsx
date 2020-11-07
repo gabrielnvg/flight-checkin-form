@@ -2,16 +2,19 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styles from './SearchFlight.module.scss';
-
-type SetFormStep = (
-  setFormStep: number | ((formStep: number) => number),
-) => void;
+import { FetchStatus, SetFetchStatus, SetFormStep } from '../../../ts/types';
 
 interface Props {
+  fetchStatus: FetchStatus;
+  setFetchStatus: SetFetchStatus;
   setFormStep: SetFormStep;
 }
 
-const SearchFlight: React.FC<Props> = ({ setFormStep }) => {
+const SearchFlight: React.FC<Props> = ({
+  fetchStatus,
+  setFetchStatus,
+  setFormStep,
+}) => {
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
