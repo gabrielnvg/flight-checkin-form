@@ -9,6 +9,15 @@ const App = () => {
     hasError: false,
     isLoading: false,
   });
+  const [formStep, setFormStep] = useState(1);
+
+  const handleSearchFlightSubmit = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+
+    setFormStep((prevState) => prevState + 1);
+  };
 
   return (
     <div className="main-container">
@@ -18,8 +27,8 @@ const App = () => {
 
       {!fetchStatus.isLoading && !fetchStatus.hasError && (
         <CheckinForm
-          fetchStatus={fetchStatus}
-          setFetchStatus={setFetchStatus}
+          formStep={formStep}
+          handleSearchFlightSubmit={handleSearchFlightSubmit}
         />
       )}
     </div>

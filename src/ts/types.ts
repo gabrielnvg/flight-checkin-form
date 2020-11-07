@@ -1,13 +1,3 @@
-export type FetchStatus = {
-  hasError: boolean;
-  isLoading: boolean;
-};
+export type FormStep = number;
 
-export type SetFetchStatus = (setFormStep: {
-  hasError: boolean;
-  isLoading: boolean;
-}) => void;
-
-export type SetFormStep = (
-  setFormStep: number | ((formStep: number) => number),
-) => void;
+export type HandleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => void;
