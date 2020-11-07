@@ -1,14 +1,6 @@
-@import '../../assets/scss/partials/imports';
-
 .fetch-error {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  .reload-page-button {
-    margin-top: 25px;
-    color: $color-text-highlight;
-    background-color: $color-primary;
-  }
 }
