@@ -1,0 +1,18 @@
+@import '../../../assets/scss/partials/imports';
+
+.search-flight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & > *:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  .submit-button {
+    margin-top: 25px;
+    color: $color-text-highlight;
+    background-color: $color-primary;
+  }
+}
