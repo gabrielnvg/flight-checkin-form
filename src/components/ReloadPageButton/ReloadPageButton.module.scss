@@ -1,7 +1,9 @@
 @import '../../assets/scss/partials/imports';
 
-.reload-page-button {
-  margin-top: 25px;
-  color: $color-text-highlight;
-  background-color: $color-primary;
+.reload-page-button-container {
+  button {
+    margin-top: 25px;
+    color: $color-text-highlight;
+    background-color: $color-primary;
+  }
 }

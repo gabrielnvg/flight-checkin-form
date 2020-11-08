@@ -5,7 +5,7 @@ import ReloadPageButton from '../../ReloadPageButton/ReloadPageButton';
 
 const ConfirmationMessage = () => {
   return (
-    <div className={styles['confirmation-error']}>
+    <div className={styles['confirmation-message']}>
       <div>Your check-in is confirmed!</div>
 
       <ReloadPageButton />

@@ -6,15 +6,16 @@ const ReloadPageButton = () => {
   const handleClick = () => document.location.reload();
 
   return (
-    <Button
-      className={styles['reload-page-button']}
-      onClick={handleClick}
-      variant="contained"
-      color="primary"
-      disableElevation
-    >
-      Reload page
-    </Button>
+    <div className={styles['reload-page-button-container']}>
+      <Button
+        onClick={handleClick}
+        variant="contained"
+        color="primary"
+        disableElevation
+      >
+        Reload page
+      </Button>
+    </div>
   );
 };
 
