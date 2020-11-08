@@ -4,7 +4,7 @@ import { FormStep, HandleSubmit } from '../../ts/types';
 
 import SearchFlight from './SearchFlight/SearchFlight';
 // import SearchFlight from './SearchFlight/SearchFlight';
-import ConfirmationMessage from './ConfirmationMessage/ConfirmationMessage';
+import InfoMessage from '../InfoMessage/InfoMessage';
 
 interface Props {
   formStep: FormStep;
@@ -31,7 +31,7 @@ const CheckinForm: React.FC<Props> = ({
         </>
       )}
 
-      {formStep === 3 && <ConfirmationMessage />}
+      {formStep === 3 && <InfoMessage message="Your check-in is confirmed!" />}
     </div>
   );
 };

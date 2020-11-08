@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import FetchLoading from './components/FetchLoading/FetchLoading';
-import FetchError from './components/FetchError/FetchError';
+import InfoMessage from './components/InfoMessage/InfoMessage';
 import CheckinForm from './components/CheckinForm/CheckinForm';
 
 const App = () => {
@@ -21,7 +21,9 @@ const App = () => {
 
   return (
     <div className="main-container">
-      {fetchStatus.hasError && <FetchError />}
+      {fetchStatus.hasError && (
+        <InfoMessage message="Please check your connection and try again later." />
+      )}
 
       {fetchStatus.isLoading && !fetchStatus.hasError && <FetchLoading />}
 
