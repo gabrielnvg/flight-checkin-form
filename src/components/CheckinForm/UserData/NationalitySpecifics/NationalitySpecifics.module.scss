@@ -1,0 +1,6 @@
+@import '../../../../assets/scss/partials/imports';
+
+.nationality-specifics {
+  width: 100%;
+  @include materialui-form;
+}

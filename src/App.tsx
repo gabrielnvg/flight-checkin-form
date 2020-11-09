@@ -19,6 +19,13 @@ const App = () => {
     setFormStep((prevState) => prevState + 1);
   };
 
+  const handleUserDataSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    // The POST with the inputs values would be done here and the next line, on its success
+    setFormStep((prevState) => prevState + 1);
+  };
+
   return (
     <div className="main-container">
       {fetchStatus.hasError && (
@@ -31,6 +38,7 @@ const App = () => {
         <CheckinForm
           formStep={formStep}
           handleSearchFlightSubmit={handleSearchFlightSubmit}
+          handleUserDataSubmit={handleUserDataSubmit}
         />
       )}
     </div>

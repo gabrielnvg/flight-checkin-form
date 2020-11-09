@@ -3,17 +3,19 @@ import styles from './CheckinForm.module.scss';
 import { FormStep, HandleSubmit } from '../../ts/types';
 
 import SearchFlight from './SearchFlight/SearchFlight';
-// import SearchFlight from './SearchFlight/SearchFlight';
+import UserData from './UserData/UserData';
 import InfoMessage from '../InfoMessage/InfoMessage';
 
 interface Props {
   formStep: FormStep;
   handleSearchFlightSubmit: HandleSubmit;
+  handleUserDataSubmit: HandleSubmit;
 }
 
 const CheckinForm: React.FC<Props> = ({
   formStep,
   handleSearchFlightSubmit,
+  handleUserDataSubmit,
 }) => {
   return (
     <div className={styles['checkin-form']}>
@@ -27,7 +29,7 @@ const CheckinForm: React.FC<Props> = ({
       {formStep === 2 && (
         <>
           {/* <div className={styles['top-text']}>Hello, {userData.lastName}!</div> */}
-          {/* <UserData handleSubmit={handleUserDataSubmit} /> */}
+          <UserData handleSubmit={handleUserDataSubmit} />
         </>
       )}
 
