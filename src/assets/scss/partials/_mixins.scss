@@ -1,0 +1,21 @@
+@mixin materialui-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & > div {
+    width: 100%;
+    text-align: left;
+  }
+
+  & > div:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  .submit-button {
+    margin-top: 25px;
+    color: $color-text-highlight;
+    background-color: $color-primary;
+  }
+}
