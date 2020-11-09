@@ -16,24 +16,61 @@ interface Props {
 }
 
 const UserData: React.FC<Props> = ({ handleSubmit }) => {
-  const [nationality, setNationality] = useState('');
+  const [values, setValues] = useState<any>({});
+  const [nationalitySpecificsValues, setNationalitySpecificsValues] = useState<
+    any
+  >({});
+
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleNationalitySpecificsInputChange = (event: any) => {
+    const { name, value } = event.target;
+
+    setNationalitySpecificsValues({
+      ...nationalitySpecificsValues,
+      [name]: value,
+    });
+  };
 
   const handleNationalityChange = (event: any) => {
-    setNationality(event.target.value);
+    setNationalitySpecificsValues({});
+    handleInputChange(event);
   };
 
   return (
-    <form className={styles['user-data']} noValidate autoComplete="off">
+    <form
+      className={styles['user-data']}
+      onSubmit={(event) =>
+        handleSubmit(event, { ...values, ...nationalitySpecificsValues })
+      }
+      noValidate
+      autoComplete="off"
+    >
       <TextField
         className={styles['form-input']}
+        name="firstName"
         label="First name"
+        defaultValue=""
+        value={values.firstName}
+        onChange={handleInputChange}
         variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
+        name="lastName"
         label="Last name"
+        defaultValue=""
+        value={values.lastName}
+        onChange={handleInputChange}
         variant="outlined"
         required
       />
@@ -41,9 +78,13 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
       <FormControl className={styles['form-input']} variant="outlined">
         <InputLabel id="nationality-label">Nationality</InputLabel>
         <Select
-          label="Nationality"
           labelId="nationality-label"
+          name="nationality"
+          label="Nationality"
+          defaultValue=""
+          value={values.nationality}
           onChange={handleNationalityChange}
+          required
         >
           <MenuItem value="other">Other</MenuItem>
           <MenuItem value="austria">Austria</MenuItem>
@@ -54,25 +95,44 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         </Select>
       </FormControl>
 
-      <NationalitySpecifics nationality={nationality} />
+      <NationalitySpecifics
+        nationality={values.nationality}
+        values={nationalitySpecificsValues}
+        handleInputChange={handleNationalitySpecificsInputChange}
+      />
 
       <TextField
         className={styles['form-input']}
+        name="email"
         label="Email"
+        type="email"
+        defaultValue=""
+        value={values.email}
+        onChange={handleInputChange}
         variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
+        name="phoneNumber"
         label="Phone number"
+        type="tel"
+        defaultValue=""
+        value={values.phoneNumber}
+        onChange={handleInputChange}
         variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
+        name="passportNumber"
         label="Passport number"
+        type="number"
+        defaultValue=""
+        value={values.passportNumber}
+        onChange={handleInputChange}
         variant="outlined"
         required
       />
@@ -81,8 +141,20 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         className={`${styles['form-input']} ${styles['checkbox-container']}`}
       >
         <Checkbox
+          name="termsAndConditionsCheckbox"
+          defaultChecked={false}
+          value={values.termsAndConditionsCheckbox}
+          onChange={(event) =>
+            handleInputChange({
+              target: {
+                name: event.target.name,
+                value: event.target.checked,
+              },
+            })
+          }
           color="primary"
           inputProps={{ 'aria-label': 'Terms and conditions checkbox' }}
+          required
         />
         <span>
           I accept the{' '}
@@ -94,7 +166,6 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
 
       <Button
         className={styles['submit-button']}
-        onClick={(event) => handleSubmit(event)}
         type="submit"
         variant="contained"
         color="primary"
