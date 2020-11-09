@@ -1,5 +1,12 @@
+@import '../../assets/scss/partials/imports';
+
 .checkin-form {
   .top-text {
     margin-bottom: 30px;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: none;
   }
 }
