@@ -11,9 +11,19 @@ interface Props {
 const SearchFlight: React.FC<Props> = ({ handleSubmit }) => {
   return (
     <form className={styles['search-flight']} noValidate autoComplete="off">
-      <TextField variant="outlined" label="Flight number" required />
+      <TextField
+        className={styles['form-input']}
+        variant="outlined"
+        label="Flight number"
+        required
+      />
 
-      <TextField variant="outlined" label="Last name" required />
+      <TextField
+        className={styles['form-input']}
+        variant="outlined"
+        label="Last name"
+        required
+      />
 
       <Button
         className={styles['submit-button']}
