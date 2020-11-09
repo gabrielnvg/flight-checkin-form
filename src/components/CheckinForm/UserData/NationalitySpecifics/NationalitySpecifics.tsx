@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import styles from './NationalitySpecifics.module.scss';
 
 interface Props {
@@ -7,60 +12,93 @@ interface Props {
 }
 
 const NationalitySpecifics: React.FC<Props> = ({ nationality }) => {
+  const [
+    austriaPassportExpiryDate,
+    setAustriaPassportExpiryDate,
+  ] = useState<Date | null>(new Date());
+  const [belgiumBirthDate, setBelgiumBirthDate] = useState<Date | null>(
+    new Date(),
+  );
+  const [franceBirthDate, setFranceBirthDate] = useState<Date | null>(
+    new Date(),
+  );
+  const [
+    greecePassportExpiryDate,
+    setGreecePassportExpiryDate,
+  ] = useState<Date | null>(new Date());
+  const [
+    greecePassportIssueDate,
+    setGreecePassportIssueDate,
+  ] = useState<Date | null>(new Date());
+
   return (
     <div className={styles['nationality-specifics']}>
       {nationality === 'austria' && (
         <>
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence country"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence city"
+            variant="outlined"
             required
           />
 
-          <TextField
-            className={styles['form-input']}
-            variant="outlined"
-            label="Passport expiry date"
-            required
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={styles['form-input']}
+              label="Passport expiry date"
+              value={austriaPassportExpiryDate}
+              onChange={(date) => setAustriaPassportExpiryDate(date)}
+              inputVariant="outlined"
+              format="dd/MM/yyyy"
+              disablePast
+              required
+            />
+          </MuiPickersUtilsProvider>
         </>
       )}
 
       {nationality === 'belgium' && (
         <>
-          <TextField
-            className={styles['form-input']}
-            variant="outlined"
-            label="Birth date"
-            required
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={styles['form-input']}
+              label="Birth date"
+              value={belgiumBirthDate}
+              onChange={(date) => setBelgiumBirthDate(date)}
+              inputVariant="outlined"
+              format="dd/MM/yyyy"
+              views={['year', 'month', 'date']}
+              openTo="year"
+              disableFuture
+              required
+            />
+          </MuiPickersUtilsProvider>
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence country"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence city"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence address"
+            variant="outlined"
             required
           />
         </>
@@ -68,31 +106,39 @@ const NationalitySpecifics: React.FC<Props> = ({ nationality }) => {
 
       {nationality === 'france' && (
         <>
-          <TextField
-            className={styles['form-input']}
-            variant="outlined"
-            label="Birth date"
-            required
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={styles['form-input']}
+              label="Birth date"
+              value={franceBirthDate}
+              onChange={(date) => setFranceBirthDate(date)}
+              inputVariant="outlined"
+              format="dd/MM/yyyy"
+              views={['year', 'month', 'date']}
+              openTo="year"
+              disableFuture
+              required
+            />
+          </MuiPickersUtilsProvider>
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Birth place"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence country"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence city"
+            variant="outlined"
             required
           />
         </>
@@ -100,33 +146,45 @@ const NationalitySpecifics: React.FC<Props> = ({ nationality }) => {
 
       {nationality === 'greece' && (
         <>
-          <TextField
-            className={styles['form-input']}
-            variant="outlined"
-            label="Passport date of issue"
-            required
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={styles['form-input']}
+              label="Passport date of issue"
+              value={greecePassportIssueDate}
+              onChange={(date) => setGreecePassportIssueDate(date)}
+              inputVariant="outlined"
+              format="dd/MM/yyyy"
+              disableFuture
+              required
+            />
+          </MuiPickersUtilsProvider>
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Passport country of issue"
+            variant="outlined"
             required
           />
 
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Passport city of issue"
+            variant="outlined"
             required
           />
 
-          <TextField
-            className={styles['form-input']}
-            variant="outlined"
-            label="Passport expiry date"
-            required
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={styles['form-input']}
+              label="Passport expiry date"
+              value={greecePassportExpiryDate}
+              onChange={(date) => setGreecePassportExpiryDate(date)}
+              inputVariant="outlined"
+              format="dd/MM/yyyy"
+              disablePast
+              required
+            />
+          </MuiPickersUtilsProvider>
         </>
       )}
 
@@ -134,8 +192,8 @@ const NationalitySpecifics: React.FC<Props> = ({ nationality }) => {
         <>
           <TextField
             className={styles['form-input']}
-            variant="outlined"
             label="Residence address"
+            variant="outlined"
             required
           />
         </>

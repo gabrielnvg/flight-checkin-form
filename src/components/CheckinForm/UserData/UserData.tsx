@@ -26,24 +26,24 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
     <form className={styles['user-data']} noValidate autoComplete="off">
       <TextField
         className={styles['form-input']}
-        variant="outlined"
         label="First name"
+        variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
-        variant="outlined"
         label="Last name"
+        variant="outlined"
         required
       />
 
       <FormControl className={styles['form-input']} variant="outlined">
         <InputLabel id="nationality-label">Nationality</InputLabel>
         <Select
+          label="Nationality"
           labelId="nationality-label"
           onChange={handleNationalityChange}
-          label="Nationality"
         >
           <MenuItem value="other">Other</MenuItem>
           <MenuItem value="austria">Austria</MenuItem>
@@ -58,22 +58,22 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
 
       <TextField
         className={styles['form-input']}
-        variant="outlined"
         label="Email"
+        variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
-        variant="outlined"
         label="Phone number"
+        variant="outlined"
         required
       />
 
       <TextField
         className={styles['form-input']}
-        variant="outlined"
         label="Passport number"
+        variant="outlined"
         required
       />
 
