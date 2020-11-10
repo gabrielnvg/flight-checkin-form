@@ -49,6 +49,7 @@ const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
         className={styles['form-input']}
         name="flightNumber"
         label="Flight number"
+        defaultValue=""
         type="number"
         value={values.flightNumber?.value}
         onChange={handleInputChange}
@@ -62,6 +63,7 @@ const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
         className={styles['form-input']}
         name="lastName"
         label="Last name"
+        defaultValue=""
         value={values.lastName?.value}
         onChange={handleInputChange}
         variant="outlined"
