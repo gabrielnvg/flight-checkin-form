@@ -29,18 +29,21 @@ const App = () => {
       isLoading: true,
     });
 
-    await fetchWithTimeout({ url: `${apiPrefix}/8f85d472/`, timeout: 10000 })
+    await fetchWithTimeout({ url: `${apiPrefix}/2903920d/`, timeout: 10000 })
       .then((response) => response.json())
       .then((flights) => {
-        const matchedFlights = flights.filter(
-          (flight: any) =>
-            flight.flightNumber === parseInt(flightNumber, 10) &&
-            flight.lastName === lastName,
-        );
+        const matchedFlight = flights.filter(
+          (flight: any) => flight.flightNumber === parseInt(flightNumber, 10),
+        )[0];
 
-        const hasMatchedFlight = !!matchedFlights.length;
+        const matchedPassenger = matchedFlight?.passengers.filter(
+          (passenger: any) => passenger.lastName === lastName,
+        )[0];
 
-        if (hasMatchedFlight) {
+        const hasMatchedFlight = !!matchedFlight;
+        const hasMatchedPassenger = !!matchedPassenger;
+
+        if (hasMatchedFlight && hasMatchedPassenger) {
           setFormStep((prevState) => prevState + 1);
         } else {
           setFlightNotMatchedDialog({
