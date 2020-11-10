@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormSubmitEvent } from './ts/types';
 import fetchWithTimeout from './assets/js/utils/fetchWithTimeout';
 
 import FetchLoading from './components/FetchLoading/FetchLoading';
 import InfoMessage from './components/InfoMessage/InfoMessage';
 import CheckinForm from './components/CheckinForm/CheckinForm';
+import DialogContainer from './components/DialogContainer/DialogContainer';
 
 const App = () => {
   const [fetchStatus, setFetchStatus] = useState({
@@ -22,7 +17,7 @@ const App = () => {
     isOpen: false,
     title: '',
     body: '',
-    buttonText: 'Ok',
+    confirmButtonText: 'Ok',
   });
 
   const apiPrefix = 'https://api.mocki.io/v1';
@@ -51,7 +46,7 @@ const App = () => {
           setFlightNotMatchedDialog({
             ...flightNotMatchedDialog,
             isOpen: true,
-            title: 'Flight not found for this last name',
+            title: 'Flight not found for this name',
             body: `There is no flight with number "${flightNumber}" in the name of "${lastName}", please try a different search.`,
           });
         }
@@ -103,30 +98,10 @@ const App = () => {
         />
       )}
 
-      <Dialog
-        open={flightNotMatchedDialog.isOpen}
-        onClose={handleCloseFlightNotMatchedDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {flightNotMatchedDialog.title}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {flightNotMatchedDialog.body}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleCloseFlightNotMatchedDialog}
-            color="primary"
-            autoFocus
-          >
-            {flightNotMatchedDialog.buttonText}
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DialogContainer
+        dialogState={flightNotMatchedDialog}
+        handleCloseDialog={handleCloseFlightNotMatchedDialog}
+      />
     </div>
   );
 };
