@@ -30,7 +30,7 @@ const App = () => {
       isLoading: true,
     });
 
-    await fetchWithTimeout({ url: `${apiPrefix}/dee9f4df/`, timeout: 10000 })
+    await fetchWithTimeout({ url: `${apiPrefix}/873b431e/`, timeout: 10000 })
       .then((response) => response.json())
       .then((flights) => {
         const matchedFlight = flights.filter(
