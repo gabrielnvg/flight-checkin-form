@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormSubmitEvent } from './ts/types';
+import fetchWithTimeout from './assets/js/utils/fetchWithTimeout';
 
 import FetchLoading from './components/FetchLoading/FetchLoading';
 import InfoMessage from './components/InfoMessage/InfoMessage';
@@ -11,19 +18,67 @@ const App = () => {
     isLoading: false,
   });
   const [formStep, setFormStep] = useState(1);
+  const [flightNotMatchedDialog, setFlightNotMatchedDialog] = useState({
+    isOpen: false,
+    title: '',
+    body: '',
+    buttonText: 'Ok',
+  });
+
+  const apiPrefix = 'https://api.mocki.io/v1';
+
+  const fetchFlight = async (flightNumber: string, lastName: string) => {
+    await fetchWithTimeout({ url: `${apiPrefix}/8f85d472/`, timeout: 10000 })
+      .then((response) => response.json())
+      .then((flights) => {
+        const matchedFlights = flights.filter(
+          (flight: any) =>
+            flight.flightNumber === parseInt(flightNumber, 10) &&
+            flight.lastName === lastName,
+        );
+
+        const hasMatchedFlight = !!matchedFlights.length;
+
+        if (hasMatchedFlight) {
+          setFormStep((prevState) => prevState + 1);
+          setFetchStatus({
+            ...fetchStatus,
+            hasError: false,
+            isLoading: false,
+          });
+        } else {
+          setFlightNotMatchedDialog({
+            ...flightNotMatchedDialog,
+            isOpen: true,
+            title: 'Flight not found for this last name',
+            body: `There is no flight with number "${flightNumber}" in the name of "${lastName}", please try a different search.`,
+          });
+        }
+      })
+      .catch(() => {
+        setFetchStatus({
+          ...fetchStatus,
+          hasError: true,
+          isLoading: false,
+        });
+      });
+  };
 
   const handleSearchFlightSubmit = (event: FormSubmitEvent, values: any) => {
-    console.log('SearchFlight values: ', values);
-
-    setFormStep((prevState) => prevState + 1);
+    const { flightNumber, lastName } = values;
+    fetchFlight(flightNumber.value, lastName.value);
   };
 
   const handleUserDataSubmit = (event: FormSubmitEvent, values: any) => {
-    console.log('UserData values: ', values);
-
     // The POST with the inputs values would be done here and the next line, on its success
     setFormStep((prevState) => prevState + 1);
   };
+
+  const handleCloseFlightNotMatchedDialog = () =>
+    setFlightNotMatchedDialog({
+      ...flightNotMatchedDialog,
+      isOpen: false,
+    });
 
   return (
     <div className="main-container">
@@ -40,6 +95,31 @@ const App = () => {
           handleUserDataSubmit={handleUserDataSubmit}
         />
       )}
+
+      <Dialog
+        open={flightNotMatchedDialog.isOpen}
+        onClose={handleCloseFlightNotMatchedDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {flightNotMatchedDialog.title}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {flightNotMatchedDialog.body}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleCloseFlightNotMatchedDialog}
+            color="primary"
+            autoFocus
+          >
+            {flightNotMatchedDialog.buttonText}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
