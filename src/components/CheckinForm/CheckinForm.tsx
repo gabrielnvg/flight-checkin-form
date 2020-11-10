@@ -8,12 +8,14 @@ import InfoMessage from '../InfoMessage/InfoMessage';
 
 interface Props {
   formStep: FormStep;
+  userStoredData: any;
   handleSearchFlightSubmit: HandleSubmit;
   handleUserDataSubmit: HandleSubmit;
 }
 
 const CheckinForm: React.FC<Props> = ({
   formStep,
+  userStoredData,
   handleSearchFlightSubmit,
   handleUserDataSubmit,
 }) => {
@@ -28,8 +30,13 @@ const CheckinForm: React.FC<Props> = ({
 
       {formStep === 2 && (
         <>
-          {/* <div className={styles['top-text']}>Hello, {userData.lastName}!</div> */}
-          <UserData handleSubmitSuccess={handleUserDataSubmit} />
+          <div className={styles['top-text']}>
+            Hello, {userStoredData.title} {userStoredData.lastName}!
+          </div>
+          <UserData
+            userStoredData={userStoredData}
+            handleSubmitSuccess={handleUserDataSubmit}
+          />
         </>
       )}
 

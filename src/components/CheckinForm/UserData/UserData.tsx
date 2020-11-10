@@ -12,10 +12,11 @@ import { FormSubmitEvent, HandleSubmit } from '../../../ts/types';
 import NationalitySpecifics from './NationalitySpecifics/NationalitySpecifics';
 
 interface Props {
+  userStoredData: any;
   handleSubmitSuccess: HandleSubmit;
 }
 
-const UserData: React.FC<Props> = ({ handleSubmitSuccess }) => {
+const UserData: React.FC<Props> = ({ userStoredData, handleSubmitSuccess }) => {
   const [values, setValues] = useState<any>({});
   const [nationalitySpecificsValues, setNationalitySpecificsValues] = useState<
     any
@@ -103,7 +104,7 @@ const UserData: React.FC<Props> = ({ handleSubmitSuccess }) => {
         className={styles['form-input']}
         name="lastName"
         label="Last name"
-        defaultValue=""
+        defaultValue={userStoredData.lastName}
         value={values.lastName?.value}
         onChange={handleInputChange}
         variant="outlined"

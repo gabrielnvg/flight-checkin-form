@@ -13,6 +13,7 @@ const App = () => {
     isLoading: false,
   });
   const [formStep, setFormStep] = useState(1);
+  const [userStoredData, setUserStoredData] = useState({});
   const [flightNotMatchedDialog, setFlightNotMatchedDialog] = useState({
     isOpen: false,
     title: '',
@@ -44,6 +45,7 @@ const App = () => {
         const hasMatchedPassenger = !!matchedPassenger;
 
         if (hasMatchedFlight && hasMatchedPassenger) {
+          setUserStoredData(matchedPassenger);
           setFormStep((prevState) => prevState + 1);
         } else {
           setFlightNotMatchedDialog({
@@ -96,6 +98,7 @@ const App = () => {
       {!fetchStatus.isLoading && !fetchStatus.hasError && (
         <CheckinForm
           formStep={formStep}
+          userStoredData={userStoredData}
           handleSearchFlightSubmit={handleSearchFlightSubmit}
           handleUserDataSubmit={handleUserDataSubmit}
         />
