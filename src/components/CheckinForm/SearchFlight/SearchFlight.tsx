@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styles from './SearchFlight.module.scss';
-import { HandleSubmit } from '../../../ts/types';
+import { FormSubmitEvent, HandleSubmit } from '../../../ts/types';
 
 interface Props {
   handleSubmitSuccess: HandleSubmit;
@@ -11,7 +11,7 @@ interface Props {
 const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
   const [values, setValues] = useState<any>({});
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormSubmitEvent) => {
     event.preventDefault();
     let isFormValid = true;
 

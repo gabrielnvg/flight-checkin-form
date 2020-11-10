@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import styles from './UserData.module.scss';
-import { HandleSubmit } from '../../../ts/types';
+import { FormSubmitEvent, HandleSubmit } from '../../../ts/types';
 
 import NationalitySpecifics from './NationalitySpecifics/NationalitySpecifics';
 
@@ -21,7 +21,7 @@ const UserData: React.FC<Props> = ({ handleSubmitSuccess }) => {
     any
   >({});
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormSubmitEvent) => {
     event.preventDefault();
     let isFormValid = true;
 
