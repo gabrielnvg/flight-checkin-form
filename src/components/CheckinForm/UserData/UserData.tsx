@@ -81,7 +81,11 @@ const UserData: React.FC<Props> = ({ handleSubmitSuccess }) => {
   };
 
   return (
-    <form className={styles['user-data']} onSubmit={handleSubmit}>
+    <form
+      className={styles['user-data']}
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <TextField
         className={styles['form-input']}
         name="firstName"

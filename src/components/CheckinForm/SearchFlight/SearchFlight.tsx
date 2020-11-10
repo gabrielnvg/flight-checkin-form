@@ -40,7 +40,11 @@ const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
   };
 
   return (
-    <form className={styles['search-flight']} onSubmit={handleSubmit}>
+    <form
+      className={styles['search-flight']}
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <TextField
         className={styles['form-input']}
         name="flightNumber"
