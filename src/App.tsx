@@ -17,7 +17,7 @@ const App = () => {
     isOpen: false,
     title: '',
     body: '',
-    confirmButtonText: 'Ok',
+    confirmButtonText: 'Try again',
   });
 
   const apiPrefix = 'https://api.mocki.io/v1';
