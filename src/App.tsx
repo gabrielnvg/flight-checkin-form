@@ -38,7 +38,8 @@ const App = () => {
         )[0];
 
         const matchedPassenger = matchedFlight?.passengers.filter(
-          (passenger: any) => passenger.lastName === lastName,
+          (passenger: any) =>
+            passenger.lastName.toLowerCase() === lastName.toLowerCase(),
         )[0];
 
         const hasMatchedFlight = !!matchedFlight;
