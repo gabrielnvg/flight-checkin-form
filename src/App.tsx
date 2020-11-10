@@ -28,6 +28,12 @@ const App = () => {
   const apiPrefix = 'https://api.mocki.io/v1';
 
   const fetchFlight = async (flightNumber: string, lastName: string) => {
+    setFetchStatus({
+      ...fetchStatus,
+      hasError: false,
+      isLoading: true,
+    });
+
     await fetchWithTimeout({ url: `${apiPrefix}/8f85d472/`, timeout: 10000 })
       .then((response) => response.json())
       .then((flights) => {
@@ -41,11 +47,6 @@ const App = () => {
 
         if (hasMatchedFlight) {
           setFormStep((prevState) => prevState + 1);
-          setFetchStatus({
-            ...fetchStatus,
-            hasError: false,
-            isLoading: false,
-          });
         } else {
           setFlightNotMatchedDialog({
             ...flightNotMatchedDialog,
@@ -54,6 +55,12 @@ const App = () => {
             body: `There is no flight with number "${flightNumber}" in the name of "${lastName}", please try a different search.`,
           });
         }
+
+        setFetchStatus({
+          ...fetchStatus,
+          hasError: false,
+          isLoading: false,
+        });
       })
       .catch(() => {
         setFetchStatus({
