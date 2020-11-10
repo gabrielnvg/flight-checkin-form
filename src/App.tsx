@@ -13,16 +13,12 @@ const App = () => {
   const [formStep, setFormStep] = useState(1);
 
   const handleSearchFlightSubmit = (event: FormSubmitEvent, values: any) => {
-    event.preventDefault();
-
     console.log('SearchFlight values: ', values);
 
     setFormStep((prevState) => prevState + 1);
   };
 
   const handleUserDataSubmit = (event: FormSubmitEvent, values: any) => {
-    event.preventDefault();
-
     console.log('UserData values: ', values);
 
     // The POST with the inputs values would be done here and the next line, on its success

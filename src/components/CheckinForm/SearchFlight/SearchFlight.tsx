@@ -5,37 +5,52 @@ import styles from './SearchFlight.module.scss';
 import { HandleSubmit } from '../../../ts/types';
 
 interface Props {
-  handleSubmit: HandleSubmit;
+  handleSubmitSuccess: HandleSubmit;
 }
 
-const SearchFlight: React.FC<Props> = ({ handleSubmit }) => {
+const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
   const [values, setValues] = useState<any>({});
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    let isFormValid = true;
+
+    Object.values(values).forEach((value: any) => {
+      if (value.hasError) {
+        isFormValid = false;
+      }
+    });
+
+    if (isFormValid) {
+      handleSubmitSuccess(event, values);
+    }
+  };
+
   const handleInputChange = (event: any) => {
-    const { name, value } = event.target;
+    const { name, value, validity, validationMessage } = event.target;
 
     setValues({
       ...values,
-      [name]: value,
+      [name]: {
+        value,
+        hasError: !validity.valid,
+        validationMessage,
+      },
     });
   };
 
   return (
-    <form
-      className={styles['search-flight']}
-      onSubmit={(event) => handleSubmit(event, values)}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={styles['search-flight']} onSubmit={handleSubmit}>
       <TextField
         className={styles['form-input']}
         name="flightNumber"
         label="Flight number"
         type="number"
-        defaultValue=""
-        value={values.flightNumber}
+        value={values.flightNumber?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.flightNumber?.hasError}
+        helperText={values.flightNumber?.validationMessage}
         required
       />
 
@@ -43,10 +58,11 @@ const SearchFlight: React.FC<Props> = ({ handleSubmit }) => {
         className={styles['form-input']}
         name="lastName"
         label="Last name"
-        defaultValue=""
-        value={values.lastName}
+        value={values.lastName?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.lastName?.hasError}
+        helperText={values.lastName?.validationMessage}
         required
       />
 

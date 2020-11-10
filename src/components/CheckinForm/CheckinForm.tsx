@@ -22,14 +22,14 @@ const CheckinForm: React.FC<Props> = ({
       {formStep === 1 && (
         <>
           <div className={styles['top-text']}>Welcome to your web check-in</div>
-          <SearchFlight handleSubmit={handleSearchFlightSubmit} />
+          <SearchFlight handleSubmitSuccess={handleSearchFlightSubmit} />
         </>
       )}
 
       {formStep === 2 && (
         <>
           {/* <div className={styles['top-text']}>Hello, {userData.lastName}!</div> */}
-          <UserData handleSubmit={handleUserDataSubmit} />
+          <UserData handleSubmitSuccess={handleUserDataSubmit} />
         </>
       )}
 

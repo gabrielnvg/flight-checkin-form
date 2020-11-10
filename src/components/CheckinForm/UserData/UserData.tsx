@@ -12,55 +12,86 @@ import { HandleSubmit } from '../../../ts/types';
 import NationalitySpecifics from './NationalitySpecifics/NationalitySpecifics';
 
 interface Props {
-  handleSubmit: HandleSubmit;
+  handleSubmitSuccess: HandleSubmit;
 }
 
-const UserData: React.FC<Props> = ({ handleSubmit }) => {
+const UserData: React.FC<Props> = ({ handleSubmitSuccess }) => {
   const [values, setValues] = useState<any>({});
   const [nationalitySpecificsValues, setNationalitySpecificsValues] = useState<
     any
   >({});
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    let isFormValid = true;
+
+    Object.values(values).forEach((value: any) => {
+      if (value.hasError) {
+        isFormValid = false;
+      }
+    });
+
+    Object.values(nationalitySpecificsValues).forEach((value: any) => {
+      if (value.hasError) {
+        isFormValid = false;
+      }
+    });
+
+    if (isFormValid) {
+      handleSubmitSuccess(event, { ...values, ...nationalitySpecificsValues });
+    }
+  };
+
   const handleInputChange = (event: any) => {
-    const { name, value } = event.target;
+    const { name, value, validity, validationMessage } = event.target;
 
     setValues({
       ...values,
-      [name]: value,
+      [name]: {
+        value,
+        hasError: !validity.valid,
+        validationMessage,
+      },
     });
   };
 
   const handleNationalitySpecificsInputChange = (event: any) => {
-    const { name, value } = event.target;
+    const { name, value, validity, validationMessage } = event.target;
 
     setNationalitySpecificsValues({
       ...nationalitySpecificsValues,
-      [name]: value,
+      [name]: {
+        value,
+        hasError: !validity.valid,
+        validationMessage,
+      },
     });
   };
 
   const handleNationalityChange = (event: any) => {
     setNationalitySpecificsValues({});
-    handleInputChange(event);
+    handleInputChange({
+      target: {
+        name: event.target.name,
+        value: event.target.value,
+        validity: { valid: !event.target.checked },
+        validationMessage: event.target.validationMessage,
+      },
+    });
   };
 
   return (
-    <form
-      className={styles['user-data']}
-      onSubmit={(event) =>
-        handleSubmit(event, { ...values, ...nationalitySpecificsValues })
-      }
-      noValidate
-      autoComplete="off"
-    >
+    <form className={styles['user-data']} onSubmit={handleSubmit}>
       <TextField
         className={styles['form-input']}
         name="firstName"
         label="First name"
         defaultValue=""
-        value={values.firstName}
+        value={values.firstName?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.firstName?.hasError}
+        helperText={values.firstName?.validationMessage}
         required
       />
 
@@ -69,9 +100,11 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         name="lastName"
         label="Last name"
         defaultValue=""
-        value={values.lastName}
+        value={values.lastName?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.lastName?.hasError}
+        helperText={values.lastName?.validationMessage}
         required
       />
 
@@ -82,8 +115,9 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
           name="nationality"
           label="Nationality"
           defaultValue=""
-          value={values.nationality}
+          value={values.nationality?.value}
           onChange={handleNationalityChange}
+          error={values.nationality?.hasError}
           required
         >
           <MenuItem value="other">Other</MenuItem>
@@ -96,7 +130,7 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
       </FormControl>
 
       <NationalitySpecifics
-        nationality={values.nationality}
+        nationality={values.nationality?.value}
         values={nationalitySpecificsValues}
         handleInputChange={handleNationalitySpecificsInputChange}
       />
@@ -107,9 +141,11 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         label="Email"
         type="email"
         defaultValue=""
-        value={values.email}
+        value={values.email?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.email?.hasError}
+        helperText={values.email?.validationMessage}
         required
       />
 
@@ -119,9 +155,11 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         label="Phone number"
         type="tel"
         defaultValue=""
-        value={values.phoneNumber}
+        value={values.phoneNumber?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.phoneNumber?.hasError}
+        helperText={values.phoneNumber?.validationMessage}
         required
       />
 
@@ -131,9 +169,11 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         label="Passport number"
         type="number"
         defaultValue=""
-        value={values.passportNumber}
+        value={values.passportNumber?.value}
         onChange={handleInputChange}
         variant="outlined"
+        error={values.passportNumber?.hasError}
+        helperText={values.passportNumber?.validationMessage}
         required
       />
 
@@ -143,12 +183,13 @@ const UserData: React.FC<Props> = ({ handleSubmit }) => {
         <Checkbox
           name="termsAndConditionsCheckbox"
           defaultChecked={false}
-          value={values.termsAndConditionsCheckbox}
+          value={values.termsAndConditionsCheckbox?.value}
           onChange={(event) =>
             handleInputChange({
               target: {
                 name: event.target.name,
                 value: event.target.checked,
+                validity: { valid: event.target.checked },
               },
             })
           }

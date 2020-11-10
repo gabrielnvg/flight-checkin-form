@@ -27,9 +27,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCountry"
             label="Residence country"
             defaultValue=""
-            value={values.residenceCountry}
+            value={values.residenceCountry?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCountry?.hasError}
+            helperText={values.residenceCountry?.validationMessage}
             required
           />
 
@@ -38,9 +40,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCity"
             label="Residence city"
             defaultValue=""
-            value={values.residenceCity}
+            value={values.residenceCity?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCity?.hasError}
+            helperText={values.residenceCity?.validationMessage}
             required
           />
 
@@ -49,15 +53,21 @@ const NationalitySpecifics: React.FC<Props> = ({
               className={styles['form-input']}
               label="Passport expiry date"
               defaultValue={new Date()}
-              value={values.passportExpiryDate}
+              value={values.passportExpiryDate?.value}
               onChange={(date) =>
                 handleInputChange({
-                  target: { name: 'passportExpiryDate', value: date },
+                  target: {
+                    name: 'passportExpiryDate',
+                    value: date,
+                    validity: { valid: true },
+                  },
                 })
               }
               format="dd/MM/yyyy"
               disablePast
               inputVariant="outlined"
+              error={values.passportExpiryDate?.hasError}
+              helperText={values.passportExpiryDate?.validationMessage}
               required
             />
           </MuiPickersUtilsProvider>
@@ -71,10 +81,14 @@ const NationalitySpecifics: React.FC<Props> = ({
               className={styles['form-input']}
               label="Birth date"
               defaultValue={new Date()}
-              value={values.birthDate}
+              value={values.birthDate?.value}
               onChange={(date) =>
                 handleInputChange({
-                  target: { name: 'passportExpiryDate', value: date },
+                  target: {
+                    name: 'passportExpiryDate',
+                    value: date,
+                    validity: { valid: true },
+                  },
                 })
               }
               format="dd/MM/yyyy"
@@ -82,6 +96,8 @@ const NationalitySpecifics: React.FC<Props> = ({
               openTo="year"
               disableFuture
               inputVariant="outlined"
+              error={values.birthDate?.hasError}
+              helperText={values.birthDate?.validationMessage}
               required
             />
           </MuiPickersUtilsProvider>
@@ -91,9 +107,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCountry"
             label="Residence country"
             defaultValue=""
-            value={values.residenceCountry}
+            value={values.residenceCountry?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCountry?.hasError}
+            helperText={values.residenceCountry?.validationMessage}
             required
           />
 
@@ -102,9 +120,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCity"
             label="Residence city"
             defaultValue=""
-            value={values.residenceCity}
+            value={values.residenceCity?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCity?.hasError}
+            helperText={values.residenceCity?.validationMessage}
             required
           />
 
@@ -113,9 +133,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceAddress"
             label="Residence address"
             defaultValue=""
-            value={values.residenceAddress}
+            value={values.residenceAddress?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceAddress?.hasError}
+            helperText={values.residenceAddress?.validationMessage}
             required
           />
         </>
@@ -128,10 +150,14 @@ const NationalitySpecifics: React.FC<Props> = ({
               className={styles['form-input']}
               label="Birth date"
               defaultValue={new Date()}
-              value={values.birthDate}
+              value={values.birthDate?.value}
               onChange={(date) =>
                 handleInputChange({
-                  target: { name: 'passportExpiryDate', value: date },
+                  target: {
+                    name: 'passportExpiryDate',
+                    value: date,
+                    validity: { valid: true },
+                  },
                 })
               }
               format="dd/MM/yyyy"
@@ -139,6 +165,8 @@ const NationalitySpecifics: React.FC<Props> = ({
               openTo="year"
               disableFuture
               inputVariant="outlined"
+              error={values.birthDate?.hasError}
+              helperText={values.birthDate?.validationMessage}
               required
             />
           </MuiPickersUtilsProvider>
@@ -148,9 +176,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="birthPlace"
             label="Birth place"
             defaultValue=""
-            value={values.birthPlace}
+            value={values.birthPlace?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.birthPlace?.hasError}
+            helperText={values.birthPlace?.validationMessage}
             required
           />
 
@@ -159,9 +189,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCountry"
             label="Residence country"
             defaultValue=""
-            value={values.residenceCountry}
+            value={values.residenceCountry?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCountry?.hasError}
+            helperText={values.residenceCountry?.validationMessage}
             required
           />
 
@@ -170,9 +202,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceCity"
             label="Residence city"
             defaultValue=""
-            value={values.residenceCity}
+            value={values.residenceCity?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceCity?.hasError}
+            helperText={values.residenceCity?.validationMessage}
             required
           />
         </>
@@ -185,15 +219,21 @@ const NationalitySpecifics: React.FC<Props> = ({
               className={styles['form-input']}
               label="Passport date of issue"
               defaultValue={new Date()}
-              value={values.passportIssueDate}
+              value={values.passportIssueDate?.value}
               onChange={(date) =>
                 handleInputChange({
-                  target: { name: 'passportIssueDate', value: date },
+                  target: {
+                    name: 'passportIssueDate',
+                    value: date,
+                    validity: { valid: true },
+                  },
                 })
               }
               format="dd/MM/yyyy"
               disableFuture
               inputVariant="outlined"
+              error={values.passportIssueDate?.hasError}
+              helperText={values.passportIssueDate?.validationMessage}
               required
             />
           </MuiPickersUtilsProvider>
@@ -203,9 +243,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="passportIssueCountry"
             label="Passport country of issue"
             defaultValue=""
-            value={values.passportIssueCountry}
+            value={values.passportIssueCountry?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.passportIssueCountry?.hasError}
+            helperText={values.passportIssueCountry?.validationMessage}
             required
           />
 
@@ -214,9 +256,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="passportIssueCity"
             label="Passport city of issue"
             defaultValue=""
-            value={values.passportIssueCity}
+            value={values.passportIssueCity?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.passportIssueCity?.hasError}
+            helperText={values.passportIssueCity?.validationMessage}
             required
           />
 
@@ -225,15 +269,21 @@ const NationalitySpecifics: React.FC<Props> = ({
               className={styles['form-input']}
               label="Passport expiry date"
               defaultValue={new Date()}
-              value={values.passportExpiryDate}
+              value={values.passportExpiryDate?.value}
               onChange={(date) =>
                 handleInputChange({
-                  target: { name: 'passportExpiryDate', value: date },
+                  target: {
+                    name: 'passportExpiryDate',
+                    value: date,
+                    validity: { valid: true },
+                  },
                 })
               }
               format="dd/MM/yyyy"
               disablePast
               inputVariant="outlined"
+              error={values.passportExpiryDate?.hasError}
+              helperText={values.passportExpiryDate?.validationMessage}
               required
             />
           </MuiPickersUtilsProvider>
@@ -247,9 +297,11 @@ const NationalitySpecifics: React.FC<Props> = ({
             name="residenceAddress"
             label="Residence address"
             defaultValue=""
-            value={values.residenceAddress}
+            value={values.residenceAddress?.value}
             onChange={handleInputChange}
             variant="outlined"
+            error={values.residenceAddress?.hasError}
+            helperText={values.residenceAddress?.validationMessage}
             required
           />
         </>
