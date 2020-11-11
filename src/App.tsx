@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FormSubmitEvent } from './ts/types';
 import fetchWithTimeout from './assets/js/utils/fetchWithTimeout';
 
 import FetchLoading from './components/FetchLoading/FetchLoading';
