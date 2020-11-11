@@ -172,7 +172,6 @@ const UserData: React.FC<Props> = ({ userStoredData, handleSubmitSuccess }) => {
         className={styles['form-input']}
         name="passportNumber"
         label="Passport number"
-        type="number"
         defaultValue=""
         value={values.passportNumber?.value}
         onChange={handleInputChange}
