@@ -72,12 +72,12 @@ const App = () => {
       });
   };
 
-  const handleSearchFlightSubmit = (event: FormSubmitEvent, values: any) => {
+  const handleSearchFlightSubmit = (values: any) => {
     const { flightNumber, lastName } = values;
     fetchFlight(flightNumber.value, lastName.value);
   };
 
-  const handleUserDataSubmit = (event: FormSubmitEvent, values: any) => {
+  const handleUserDataSubmit = (values: any) => {
     // The POST with the inputs values would be done here and the next line, on its success
     setFormStep((prevState) => prevState + 1);
   };

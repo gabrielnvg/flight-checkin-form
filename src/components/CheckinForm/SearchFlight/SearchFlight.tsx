@@ -22,7 +22,7 @@ const SearchFlight: React.FC<Props> = ({ handleSubmitSuccess }) => {
     });
 
     if (isFormValid) {
-      handleSubmitSuccess(event, values);
+      handleSubmitSuccess(values);
     }
   };
 

@@ -39,7 +39,7 @@ const UserData: React.FC<Props> = ({ userStoredData, handleSubmitSuccess }) => {
     });
 
     if (isFormValid) {
-      handleSubmitSuccess(event, { ...values, ...nationalitySpecificsValues });
+      handleSubmitSuccess({ ...values, ...nationalitySpecificsValues });
     }
   };
 
