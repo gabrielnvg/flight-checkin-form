@@ -13,11 +13,20 @@ const App = () => {
   });
   const [formStep, setFormStep] = useState(1);
   const [userStoredData, setUserStoredData] = useState({});
+  const [inputValues, setInputValues] = useState({});
   const [flightNotMatchedDialog, setFlightNotMatchedDialog] = useState({
     isOpen: false,
     title: '',
     body: '',
     confirmButtonText: 'Try again',
+  });
+  const [userDataSubmitDialog, setUserDataSubmitDialog] = useState({
+    isOpen: false,
+    title: 'Review',
+    body: 'Are you sure that all your information is correct?',
+    hasCancelButton: true,
+    cancelButtonText: 'No, review',
+    confirmButtonText: 'Yes, submit',
   });
 
   const apiPrefix = 'https://api.mocki.io/v1';
@@ -77,8 +86,11 @@ const App = () => {
   };
 
   const handleUserDataSubmit = (values: any) => {
-    // The POST with the inputs values would be done here and the next line, on its success
-    setFormStep((prevState) => prevState + 1);
+    setInputValues(values);
+    setUserDataSubmitDialog({
+      ...userDataSubmitDialog,
+      isOpen: true,
+    });
   };
 
   const handleCloseFlightNotMatchedDialog = () =>
@@ -86,6 +98,19 @@ const App = () => {
       ...flightNotMatchedDialog,
       isOpen: false,
     });
+
+  const handleCloseUserDataSubmitDialog = () =>
+    setUserDataSubmitDialog({
+      ...userDataSubmitDialog,
+      isOpen: false,
+    });
+
+  const handleConfirmButtonClick = () => {
+    // The POST with the inputs values would be done here
+
+    setFormStep((prevState) => prevState + 1);
+    handleCloseUserDataSubmitDialog();
+  };
 
   return (
     <div className="main-container">
@@ -107,6 +132,12 @@ const App = () => {
       <DialogContainer
         dialogState={flightNotMatchedDialog}
         handleCloseDialog={handleCloseFlightNotMatchedDialog}
+      />
+
+      <DialogContainer
+        dialogState={userDataSubmitDialog}
+        handleCloseDialog={handleCloseUserDataSubmitDialog}
+        handleConfirmButtonClick={handleConfirmButtonClick}
       />
     </div>
   );
