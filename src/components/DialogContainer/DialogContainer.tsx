@@ -11,7 +11,7 @@ interface Props {
   dialogState: {
     isOpen: boolean;
     title: string;
-    body: string;
+    body: JSX.Element | string;
     confirmButtonText: string;
     hasCancelButton?: boolean;
     cancelButtonText?: string;

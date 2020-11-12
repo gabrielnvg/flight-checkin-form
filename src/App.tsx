@@ -17,7 +17,7 @@ const App = () => {
   const [flightNotMatchedDialog, setFlightNotMatchedDialog] = useState({
     isOpen: false,
     title: '',
-    body: '',
+    body: <span />,
     confirmButtonText: 'Try again',
   });
   const [userDataSubmitDialog, setUserDataSubmitDialog] = useState({
@@ -61,7 +61,13 @@ const App = () => {
             ...flightNotMatchedDialog,
             isOpen: true,
             title: 'Flight not found for this name',
-            body: `There is no flight with number "${flightNumber}" in the name of "${lastName}", please try a different search.`,
+            body: (
+              <span>
+                There is no flight with number <strong>{flightNumber}</strong>{' '}
+                in the name of <strong>{lastName}</strong>, please try a
+                different search.
+              </span>
+            ),
           });
         }
 
