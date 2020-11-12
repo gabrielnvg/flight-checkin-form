@@ -120,7 +120,6 @@ const App = () => {
     });
 
   const handleConfirmButtonClick = async () => {
-    console.log(inputValues);
     handleCloseUserDataSubmitDialog();
 
     setFetchStatus({
