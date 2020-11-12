@@ -105,11 +105,43 @@ const App = () => {
       isOpen: false,
     });
 
-  const handleConfirmButtonClick = () => {
-    // The POST with the inputs values would be done here
-
-    setFormStep((prevState) => prevState + 1);
+  const handleConfirmButtonClick = async () => {
     handleCloseUserDataSubmitDialog();
+
+    setFetchStatus({
+      ...fetchStatus,
+      hasError: false,
+      isLoading: true,
+    });
+
+    await fetchWithTimeout({
+      url: `${apiPrefix}/8fcc9311/`,
+      options: {
+        method: 'PUT',
+        body: inputValues,
+      },
+      timeout: 10000,
+    })
+      .then((response: any) => {
+        if (response.status === 200) {
+          setFormStep((prevState) => prevState + 1);
+
+          setFetchStatus({
+            ...fetchStatus,
+            hasError: false,
+            isLoading: false,
+          });
+        } else {
+          throw new Error('Fetch status was not 200.');
+        }
+      })
+      .catch(() => {
+        setFetchStatus({
+          ...fetchStatus,
+          hasError: true,
+          isLoading: false,
+        });
+      });
   };
 
   return (
