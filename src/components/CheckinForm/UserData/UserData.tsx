@@ -12,7 +12,7 @@ import { FormSubmitEvent, HandleSubmit } from '../../../ts/types';
 import NationalitySpecifics from './NationalitySpecifics/NationalitySpecifics';
 
 interface Props {
-  userStoredData: any;
+  userStoredData: Record<string, unknown>;
   handleSubmitSuccess: HandleSubmit;
 }
 

@@ -8,7 +8,7 @@ import InfoMessage from '../InfoMessage/InfoMessage';
 
 interface Props {
   formStep: FormStep;
-  userStoredData: any;
+  userStoredData: Record<string, unknown>;
   handleSearchFlightSubmit: HandleSubmit;
   handleUserDataSubmit: HandleSubmit;
 }
