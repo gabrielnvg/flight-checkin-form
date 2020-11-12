@@ -86,7 +86,15 @@ const App = () => {
   };
 
   const handleUserDataSubmit = (values: any) => {
-    setInputValues(values);
+    const modifiedValues = { ...values };
+
+    Object.keys(values).map((key: string) => {
+      modifiedValues[key] = values[key].value;
+      return null;
+    });
+
+    setInputValues(modifiedValues);
+
     setUserDataSubmitDialog({
       ...userDataSubmitDialog,
       isOpen: true,
@@ -106,6 +114,7 @@ const App = () => {
     });
 
   const handleConfirmButtonClick = async () => {
+    console.log(inputValues);
     handleCloseUserDataSubmitDialog();
 
     setFetchStatus({
