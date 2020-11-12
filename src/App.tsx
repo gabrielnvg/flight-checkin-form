@@ -39,7 +39,7 @@ const App = () => {
     });
 
     await fetchWithTimeout({ url: `${apiPrefix}/873b431e/`, timeout: 10000 })
-      .then((response) => response.json())
+      .then((response: any) => response.json())
       .then((flights) => {
         const matchedFlight = flights.filter(
           (flight: any) => flight.flightNumber === parseInt(flightNumber, 10),
