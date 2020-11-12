@@ -2,7 +2,6 @@
 
 .reload-page-button-container {
   button {
-    color: $color-text-highlight;
-    background-color: $color-primary;
+    @include materialui-button;
   }
 }

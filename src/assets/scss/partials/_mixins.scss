@@ -1,3 +1,9 @@
+@mixin materialui-button {
+  height: 48px;
+  color: $color-text-highlight;
+  background-color: $color-primary;
+}
+
 @mixin materialui-form {
   display: flex;
   align-items: center;
@@ -19,8 +25,8 @@
   }
 
   .submit-button {
+    @include materialui-button;
     margin-top: 25px;
-    color: $color-text-highlight;
-    background-color: $color-primary;
+    width: 100%;
   }
 }
