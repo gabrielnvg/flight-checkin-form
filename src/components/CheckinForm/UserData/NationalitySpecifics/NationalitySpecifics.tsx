@@ -1,10 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import styles from './NationalitySpecifics.module.scss';
 
 interface Props {
@@ -49,7 +46,7 @@ const NationalitySpecifics: React.FC<Props> = ({
           />
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
               className={styles['form-input']}
               label="Passport expiry date"
               defaultValue={new Date()}
@@ -77,7 +74,7 @@ const NationalitySpecifics: React.FC<Props> = ({
       {nationality === 'belgium' && (
         <>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
               className={styles['form-input']}
               label="Birth date"
               defaultValue={new Date()}
@@ -146,7 +143,7 @@ const NationalitySpecifics: React.FC<Props> = ({
       {nationality === 'france' && (
         <>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
               className={styles['form-input']}
               label="Birth date"
               defaultValue={new Date()}
@@ -215,7 +212,7 @@ const NationalitySpecifics: React.FC<Props> = ({
       {nationality === 'greece' && (
         <>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
               className={styles['form-input']}
               label="Passport date of issue"
               defaultValue={new Date()}
@@ -265,7 +262,7 @@ const NationalitySpecifics: React.FC<Props> = ({
           />
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
               className={styles['form-input']}
               label="Passport expiry date"
               defaultValue={new Date()}
