@@ -45,7 +45,7 @@ const DialogContainer: React.FC<Props> = ({
         {dialogState.hasCancelButton && (
           <Button
             onClick={handleCancelButtonClick || handleCloseDialog}
-            color="primary"
+            color="secondary"
             autoFocus
           >
             {dialogState.cancelButtonText}
