@@ -4,8 +4,10 @@ import { shallow } from '../../setupTests';
 import CheckinForm from './CheckinForm';
 
 describe('CheckinForm component', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(
+  let wrapper: any;
+
+  beforeEach(() => {
+    wrapper = shallow(
       <CheckinForm
         formStep={1}
         userStoredData={{}}
@@ -13,6 +15,15 @@ describe('CheckinForm component', () => {
         handleUserDataSubmit={() => {}}
       />,
     );
+  });
+
+  it('renders without crashing', () => {
     expect(wrapper).toHaveLength(1);
+  });
+
+  it('contains the text "Welcome to your web check-in"', () => {
+    expect(wrapper.find('div > div').text()).toBe(
+      'Welcome to your web check-in',
+    );
   });
 });
