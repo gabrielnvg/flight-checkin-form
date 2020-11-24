@@ -92,14 +92,15 @@ const App = () => {
   };
 
   const handleUserDataSubmit = (values: any) => {
-    const modifiedValues = { ...values };
-
-    Object.keys(values).map((key: string) => {
-      modifiedValues[key] = values[key].value;
-      return null;
-    });
-
-    setInputValues(modifiedValues);
+    setInputValues(
+      Object.keys(values).reduce(
+        (modifiedValues: any, key: string) => ({
+          ...modifiedValues,
+          [key]: values[key].value,
+        }),
+        {},
+      ),
+    );
 
     setUserDataSubmitDialog({
       ...userDataSubmitDialog,
