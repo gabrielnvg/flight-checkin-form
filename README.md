@@ -4,6 +4,39 @@ A React app with a form that when the user provides his flight number and last n
 ## Demo
 https://gabrielnvg-flight-checkin.surge.sh
 
+Two JSON files must be created using the models below and their paths added to the fetch code.
+
+## Data
+### JSON Template - Flights
+```js
+[
+  {
+    "flightNumber": number,
+    "passengers": [
+      {
+        "lastName": string,
+        "title": "Mr. | Ms. | Dr. | Prof. | Other"
+      }
+    ]
+  }
+]
+```
+
+### JSON Template - Users
+```js
+[
+    {
+      "firstName": string,
+      "lastName": string,
+      "nationality": string,
+      "phoneNumber": number,
+      "email": string,
+      "passportNumber": number,
+      "isTermsAndConditionsAccepted": bool
+    }
+]
+```
+
 ## Dependencies
 - [Node](https://nodejs.org/en/) 12.15.0
 - [npm](https://www.npmjs.com/get-npm) 6.13.4
